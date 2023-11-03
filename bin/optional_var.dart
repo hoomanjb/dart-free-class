@@ -17,15 +17,31 @@ void main(List<String> args) {
   // List<String?>? children3;
   // children?.add('bla');
   // children3?.add(null);
-  
+
   // force unwrapping
-  try {
-      const String? name = null;
-      print(name!);
-  }
-  catch (ex) {
-    print(ex);
-  }
+  // try {
+  //     const String? name = null;
+  //     print(name!);
+  // }
+  // catch (ex) {
+  //   print(ex);
+  // }
 
+  // T? withAll <T>(
+  // List<T?> optionals,
+  // T Function(List<T>) callback,
+  // ) => optionals.any((element) => element == null)
+  // ? null : callback(optionals.cast<T>());
 
+  // T = String
+
+  String? withAll(
+          List<String?> optionals, String Function(List<String>) callback) =>
+      optionals.any((element) => element == null)
+          ? null
+          : callback(optionals.cast<String>());
+
+  String getFullName(
+      String? firstName, String? lastName
+      ) => withAll([firstName, lastName], (names) => names.join(' ')) ?? 'Empty';
 }
